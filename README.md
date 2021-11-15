@@ -1,40 +1,7 @@
-show databases;
-use work5;
-show tables;
-describe orders;
-show processlist;
+# Создать страницу с авторизацией пользователя: логин и пароль и реализовать в ней:
 
-mysqldump -u root -p --no-data work5 > ./database.sql
-
-После создания БД выполнить
-sudo mysql
-SELECT user,authentication_string,plugin,host FROM mysql.user;
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
-FLUSH PRIVILEGES;
-
-
-CREATE TABLE users (
-	id INT NOT NULL AUTO_INCREMENT,
-	fio VARCHAR(255) NOT NULL,
-	email VARCHAR(255) NOT NULL,
-	login VARCHAR(255) NOT NULL,
-	password VARCHAR(255) NOT NULL,
-	PRIMARY KEY (id)
-);
-
-CREATE TABLE orders (
-	id INT NOT NULL AUTO_INCREMENT,
-	user_id INT(11) NOT NULL,
-	price INT(11) NOT NULL,
-	PRIMARY KEY (id)
-);
-
-CREATE TABLE session_login (
-	id INT NOT NULL AUTO_INCREMENT,
-	user_id int NOT NULL,
-	hash VARCHAR(100) NOT NULL,
-	date DATE NOT NULL,
-	PRIMARY KEY (id)
-);
-
-DROP TABLE users
+* возможность регистрации пользователя (email, логин, пароль, ФИО),
+* при входе в &quot;личный кабинет&quot; возможность сменить пароль и ФИО.
+* использовать &quot;чистый&quot; PHP 5.6 и выше (без фреймворков) и MySQL 5.5 и выше, дизайн
+не важен, верстка тоже простая. Наворотов не нужно, хотим посмотреть просто Ваш
+код.
