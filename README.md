@@ -5,3 +5,46 @@
 * использовать &quot;чистый&quot; PHP 5.6 и выше (без фреймворков) и MySQL 5.5 и выше, дизайн
 не важен, верстка тоже простая. Наворотов не нужно, хотим посмотреть просто Ваш
 код.
+### решение реализовано - файлы и дамп в репозитории.
+
+# SQL
+## Есть 2 таблицы
+* таблица пользователей:
+users
+----------
+`id` int(11)
+`email` varchar(55)
+`login` varchar(55)
+и таблица заказов
+
+orders
+--------
+`id` int(11)
+`user_id` int(11)
+`price` int(11)
+
+## Необходимо:
+1. составить запрос, который выведет список email-лов встречающихся более чем у
+одного пользователя
+2. вывести список логинов пользователей, которые не сделали ни одного заказа
+3. вывести список логинов пользователей которые сделали более двух заказов
+
+## Решение:
+1. 
+SELECT *
+FROM users u1
+WHERE (SELECT COUNT(*) FROM users u2 WHERE u2.email=u1.email) > 1;
+
+2. 
+SELECT users.login
+FROM users
+WHERE (SELECT COUNT(*) FROM orders WHERE orders.user_id = users.id) < 1;
+
+3. 
+SELECT users.login
+FROM users
+WHERE (SELECT COUNT(*) FROM orders WHERE orders.user_id = users.id) > 2;
+
+
+
+
