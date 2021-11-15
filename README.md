@@ -17,7 +17,7 @@ users
 `email` varchar(55)
 `login` varchar(55)
 ```
-и таблица заказов
+* и таблица заказов
 ```
 orders
 --------
