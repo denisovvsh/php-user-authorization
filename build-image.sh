@@ -1,0 +1,1 @@
+docker build --build-arg USER_ID=$(id -u) --build-arg USER_NAME=$(id -nu) --build-arg GROUP_ID=$(id -g) --build-arg GROUP_NAME=$(id -ng) -t denisovvsh/lamp .
